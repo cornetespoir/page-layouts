@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--  gummy shark page -->
+<html>
+    <head>
+        <title>About page</title>
+        <link rel="icon" href="https://64.media.tumblr.com/926c55b67f8b821ea668d89dd3b45dfd/5332a08cf660ff07-2b/s400x600/53ff7d04301dbb20250cc3663ba604833762c263.jpg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
+            
+            /* All of the color options are here! */
+            :root {
+                --background: #f1f3f3;
+                --border-radius: 0.4rem;
+                --grid: #178cbb63;
+                --card: #e5f1f4;
+                /* if you dont want a  gradient, make this color the same as the card */
+                --card-gradient: #e5f1f4;
+                --spacing: 1rem;
+                --transparent: rgba(0, 0, 0, 0);
+                --even-tabs: skyblue;
+                --odd-tabs: #beefed;
+                --tab: #c0dadf;
+                --tape: #028a98;
+                --text: #000;
+                --links: #075277;
+                /* if you don't want a box shadow, set this to transparent */
+                --box-shadow: rgba(149, 222, 218, 0.4);
+                --grid-bg: white;
+            }
+            body {
+                margin: 0;
+                color: var(--text);
+                background: var(--background);
+                font-family: "Poppins", sans-serif;
+            }
+            a {
+                text-decoration: none;
+                color: var(--links);
+                border-bottom: 2.4px dashed var(--grid);
+            }
+            a:hover {
+                border-bottom-style: solid;
+            }
+            img {
+                max-width: 100%;
+            }
+            main {
+                max-width: 1600px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--spacing);
+                padding: calc(var(--spacing) * 2);
+                margin: 100px auto;
+            }
+            aside {
+                width: 100%;
+                max-width: 300px;
+                z-index: 2;
+                position: relative;
+            }
+            section {
+                max-width: 50vw;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+            .stacked {
+                position: relative;
+                width: 100%;
+                align-items: center;
+                flex-wrap: wrap;
+                display: flex;
+                filter: drop-shadow(2px 2px 0 var(--box-shadow));
+                justify-content: center;
+            }
+            .card {
+                width: 220px;
+                aspect-ratio: 3 / 5;
+                overflow: hidden;
+                transition: 0.6s;
+                border-radius: var(--border-radius);
+                box-shadow: 0 0 0 4px var(--grid-bg), 0 0 0 6px var(--grid);
+            }
+            .stacked:hover .card {
+                transform: rotate(-4deg) translate(-16%, -12%);
+            }
+            .stacked:hover .card:last-of-type {
+                transform: rotate(4deg) translate(22%, 10%);
+            }
+            .card.paper {
+                --line-height: 32px;
+                line-height: var(--line-height);
+                transform: translate(-10px, -10px);
+                background-image: linear-gradient(var(--transparent) 0px, var(--transparent) calc(var(--line-height) - 2px), var(--grid) calc(var(--line-height) - 2px)), linear-gradient(to bottom, var(--card), var(--card-gradient));
+                background-size: 100% var(--line-height), 100%;
+                position: relative;
+                font-family: sans-serif;
+                line-height: var(--line-height);
+                font-size: calc(var(--line-height) / 2);
+                padding: var(--line-height);
+                border: 2px solid var(--grid);
+            }
+            .card h1 {
+                font-family: "Caveat", cursive;
+                line-height: var(--line-height);
+                margin: 0;
+            }
+            .card:last-of-type {
+                position: absolute;
+                top: 0;
+                z-index: -1;
+                right: -1rem;
+                width: 250px;
+                transform: rotate(2deg) translate(20%, 8%);
+            }
+            .card img {
+                height: 100%;
+                width: 100%;
+                border-radius: var(--border-radius);
+                object-fit: cover;
+            }
+            .card p {
+                margin: 0;
+                padding: 4px;
+            }
+            .sticker {
+                z-index: 2;
+                max-width: 200px;
+                top: 0;
+                right: 0;
+                pointer-events: none;
+                transform: translate(80%, -20%) rotate(4deg);
+                position: absolute;
+            }
+            .sticker.bottom {
+                top: auto;
+                bottom: 0;
+                right: auto;
+                max-width: 150px;
+                transform: rotate(-4deg) translate(-16%, 20%);
+            }
+            .sticker:not(.no-stick) img {
+                filter: drop-shadow(4px 4px 0 white) drop-shadow(-4px -4px 0 white) drop-shadow(-4px 4px 0 white) drop-shadow(4px -4px 0 white) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.12)) drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.12));
+            }
+            .tabs {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                margin-left: 0;
+                margin-top: 50px;
+            }
+            .tabs label {
+                cursor: pointer;
+                display: block;
+                font-weight: 600;
+                margin-right: 0.3rem;
+                order: initial;
+                margin-bottom: var(--spacing);
+                max-width: 280px;
+                padding: var(--spacing);
+                padding-left: 40px;
+                margin-left: 40px;
+                text-align: left;
+                border: 2px dashed rgba(0, 0, 0, 0.12);
+                border-radius: 0 8px 8px 0;
+                transition: ease 0.3s;
+            }
+            .tabs label:nth-of-type(even) {
+                background: var(--even-tabs);
+            }
+            .tabs label:nth-of-type(odd) {
+                background: var(--odd-tabs) !important;
+            }
+            .tabs .tab-content {
+                display: none;
+                flex-grow: 1;
+                order: 3;
+                width: 100%;
+                position: absolute;
+                max-width: 300px;
+                background: var(--tab);
+                max-height: 400px;
+                transform: rotate(2deg);
+                border: 1px solid var(--grid);
+                border-radius: var(--border-radius);
+                margin-left: 250px;
+                padding: var(--spacing);
+                box-shadow: 4px 4px var(--box-shadow);
+            }
+            .tab-content:nth-of-type(3) {
+                transform: rotate(0deg);
+            }
+            .tab-content:nth-of-type(2n + 0) {
+                transform: rotate(-4deg);
+            }
+            .tab-content:before {
+                content: "";
+                display: block;
+                height: 30px;
+                position: absolute;
+                background: var(--tape);
+                border-bottom-right-radius: 2px;
+                border-radius: 6px/14px 0;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+                display: block;
+                height: 1.6rem;
+                left: 50%;
+                margin-left: -20%;
+                opacity: 0.2;
+                position: absolute;
+                top: -0.8rem;
+                -webkit-transform: skew(6deg) rotate(-1deg);
+                transform: skew(6deg) rotate(-1deg);
+                width: 40%;
+            }
+            .tabs input[type="radio"] {
+                display: none;
+            }
+            .tabs input[type="radio"]:checked + label {
+                transform: translate(10px, 0);
+                filter: brightness(94%);
+            }
+            .tabs input[type="radio"]:checked + label + .tab-content {
+                display: block;
+            }
+            .tab-content img {
+                max-width: 80%;
+                margin: auto;
+            }
+            section:before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                margin-left: -30%;
+                border-radius: var(--border-radius);
+                border: 2px solid var(--grid);
+                position: absolute;
+                padding: var(--line-height);
+                --line-height: 1.4rem;
+                z-index: -2;
+                transform: rotate(-4deg);
+                background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, var(--grid-bg) 1px);
+                background-size: var(--line-height) var(--line-height), var(--line-height) var(--line-height), 2px 2px, 2px 2px;
+                box-shadow: 4px 4px 0px var(--box-shadow);
+            }
+            .content-sticker {
+                right: 0;
+                border-radius: 4px;
+                width: 90px;
+                transform: rotate(10deg) translate(20px, -40px);
+                float: right;
+            }
+            .content-sticker:nth-of-type(2) {
+                float: left;
+                bottom: 0;
+                transform: rotate(-10deg) translate(-10px, 40px);
+            }
+            .tab-content:has(.content-sticker:nth-of-type(2)) > :where(p, b, h1, i, span):last-of-type {
+                margin-bottom: -20px;
+                padding-bottom: 0;
+            }
+            @media only screen and (max-width: 800px) {
+                main {
+                    padding: 0;
+                }
+                aside {
+                    transform: translate(-10%, 0);
+                }
+                section {
+                    max-width: 100%;
+                }
+                .tabs label {
+                    margin-left: 0px;
+                }
+            }
+            #egg {
+                right: var(--spacing);
+                bottom: var(--spacing);
+                position: fixed;
+                display: block;
+                width: 16px;
+                height: 20px;
+                background-color: #fff;
+                border: 2px solid var(--grid);
+                box-shadow: 2px 2px var(--box-shadow);
+                border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+                z-index: 4;
+            }
+            .sr-text {
+                clip: rect(1px, 1px, 1px, 1px);
+                clip-path: inset(50%);
+                height: 1px;
+                width: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <aside>
+                <div class="stacked">
+                <!--  the first sticker! If you don't want the sticker effect added, add the class "no-stick" after sticker.
+                it will look like this:
+                <div class="right sticker no-stick">
+-->
+                    <div class="right sticker">
+                    <!-- please put an image description in the alt ! -->
+                        <img src="" alt="" />
+                    </div>
+                    <div class="card paper">
+                        <p>
+                            Hi! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque ante a condimentum ultricies.
+                        </p>
+                    </div>
+                    <!-- this is the 2nd card that appears behind the main card. The image works best in a vertical orientation. A phone lockscreen/wallpaper is usually a good fit -->
+                    <div class="card">
+                        <img src="" alt=""/>
+                    </div>
+                </div>
+                <!-- bottom sticker. If you don't want this, you can remove the image line  -->
+                <div class="bottom sticker">
+                    <img src=""  alt=""/>
+                </div>
+            </aside>
+            <section>
+                <div class="tabs">
+                    <!-- Tab 1 starts here -->
+                    <input type="radio" name="tab" id="tab1" checked />
+                    
+                    <!-- change tab label -->
+                    <label for="tab1">About me</label>
+                    
+                    <!-- tab content -->
+                    <div class="tab-content" id="content1">
+                    
+                    <!-- if you do not want this sticker, delete this line -->
+                    <img src="" class="content-sticker" />
+                    
+                    Some content <a href="/">with a link</a>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet augue lectus. Duis tristique tortor at mauris mattis malesuada.
+                </div>
+                    
+                    <!-- Tab 2 starts here -->
+                    <input type="radio" name="tab" id="tab2" />
+                    
+                    <!-- change tab label -->
+                    <label for="tab2">Fun facts</label>
+                    
+                    <!-- tab content -->
+                    <div class="tab-content" id="content2">
+                    
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         <img src="" alt="" class="content-sticker" />
+                       <!-- you can have images before and after the content ! but only up to 2 images total -->
+                        <img src="" alt="" class="content-sticker" />
+                    </div>
+                </div>
+            </section>
+        </main>
+        <a href="https://egg.design" target="_blank" id="egg"><span class="sr-text">gummy shark by egg.design</span></a>
+    </body>
+</html>
